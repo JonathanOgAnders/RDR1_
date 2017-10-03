@@ -34,6 +34,7 @@ public class Game
         }
 
         ArrayList<Integer> intNew = new ArrayList<>();
+        ArrayList<Integer> intOld = new ArrayList<>();
 
         ArrayList<Queue<Duck>> listOfQueues = new ArrayList<>();
 
@@ -45,19 +46,24 @@ public class Game
             Queue<Duck> queue2 = new LinkedList<>();
             listOfQueues.add(queue2);
         }
+        for (int i = 0; i < size; i++)
+        {
+            intOld.add(i);
+        }
 
         while(!(intNew.isEmpty()))
         {
             Collections.shuffle(intNew);
+            Collections.shuffle(intOld);
 
             int ran1 = intNew.get(intNew.size()-1);
-
-            Random r = new Random();
-            int ran2 = r.nextInt(oldList.size());
-
-//            System.out.println("ran1: " + ran1 + "\nran2: " + ran2);
+            int ran2 = intOld.get(intOld.size()-1);
 
             Duck tempDuck = oldList.get(ran2).poll();
+            if(oldList.get(ran2).size() == 0)
+            {
+                intOld.remove(intOld.indexOf(ran2));
+            }
 
             listOfQueues.get(ran1).add(tempDuck);
 
