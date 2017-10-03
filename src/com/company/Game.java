@@ -14,10 +14,10 @@ public class Game
         listOfQueues = new ArrayList<>();
         int ducknr = 0;
 
-        for (int i = 0; i < 10; i++)
+        for(int i = 0; i < 10; i++)
         {
             Queue<Duck> queue = new LinkedList<>();
-            for (int j = 0; j < 10; j++)
+            for(int j = 0; j < 10; j++)
             {
                 ducknr++;
                 queue.add(new Duck(ducknr));
@@ -28,47 +28,52 @@ public class Game
 
     public List<Queue<Duck>> runGame(List<Queue<Duck>> oldList)
     {
-        System.out.println(oldList.size());
-        System.out.println(oldList);
         if(oldList.size() == 1)
         {
             return oldList;
         }
 
-        ArrayList<Queue<Duck>> l1 = new ArrayList<>();
-        ArrayList<Queue<Duck>> l2 = new ArrayList<>();
+        ArrayList<Integer> intNew = new ArrayList<>();
+        ArrayList<Integer> intOld = new ArrayList<>();
+
+        ArrayList<Queue<Duck>> listOfQueues = new ArrayList<>();
 
         int size = oldList.size();
 
         for(int i = 0; i < size-1; i++)
         {
-            Queue<Duck> queue = new LinkedList<>();
-            l1.add(queue);
+            intNew.add(i);
             Queue<Duck> queue2 = new LinkedList<>();
-            l2.add(queue2);
+            listOfQueues.add(queue2);
+        }
+        for(int i = 0; i < size; i++)
+        {
+            intOld.add(i);
         }
 
-        Random r1 = new Random();
-        Random r2 = new Random();
-
-        while(!(l1.isEmpty()))
+        while(!(intNew.isEmpty()))
         {
-            int ran1 = r1.nextInt(l1.size());
-            int ran2 = r2.nextInt(oldList.size());
+            Collections.shuffle(intNew);
+            Collections.shuffle(intOld);
 
-            Duck tempDuck;
-            tempDuck = oldList.get(ran2).poll();
+            int ran1 = intNew.get(intNew.size()-1);
+            int ran2 = intOld.get(intOld.size()-1);
 
-            l1.get(ran1).add(tempDuck);
-            l2.get(ran1).add(tempDuck);
-
-            if(l1.get(ran1).size() == size-1)
+            Duck tempDuck = oldList.get(ran2).poll();
+            if(oldList.get(ran2).size() == 0)
             {
-                l1.remove(ran1);
+                intOld.remove(intOld.indexOf(ran2));
+            }
+
+            listOfQueues.get(ran1).add(tempDuck);
+
+            if(listOfQueues.get(ran1).size() == size-1)
+            {
+                intNew.remove(intNew.indexOf(ran1));
             }
         }
 
-        return runGame(l2);
+        return runGame(listOfQueues);
     }
 
     public Duck getWinner()
@@ -77,5 +82,4 @@ public class Game
 
         return winnerList.get(0).poll();
     }
-
 }
