@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class Game
 {
-    List<Queue<Duck>> listOfQueues;
+    private List<Queue<Duck>> listOfQueues;
 
     public Game()
     {
