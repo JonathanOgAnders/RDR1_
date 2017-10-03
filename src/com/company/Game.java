@@ -14,10 +14,10 @@ public class Game
         listOfQueues = new ArrayList<>();
         int ducknr = 0;
 
-        for (int i = 0; i < 10; i++)
+        for(int i = 0; i < 10; i++)
         {
             Queue<Duck> queue = new LinkedList<>();
-            for (int j = 0; j < 10; j++)
+            for(int j = 0; j < 10; j++)
             {
                 ducknr++;
                 queue.add(new Duck(ducknr));
@@ -40,13 +40,13 @@ public class Game
 
         int size = oldList.size();
 
-        for (int i = 0; i < size-1; i++)
+        for(int i = 0; i < size-1; i++)
         {
             intNew.add(i);
             Queue<Duck> queue2 = new LinkedList<>();
             listOfQueues.add(queue2);
         }
-        for (int i = 0; i < size; i++)
+        for(int i = 0; i < size; i++)
         {
             intOld.add(i);
         }
@@ -82,5 +82,4 @@ public class Game
 
         return winnerList.get(0).poll();
     }
-
 }

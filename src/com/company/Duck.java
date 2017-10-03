@@ -14,7 +14,6 @@ public class Duck
 
     public String toString()
     {
-//        return "Jeg er and nr: " + nr + " og jeg vandt. Juhu!";
-        return "and " + nr;
+        return "Jeg er and nr: " + nr + " og jeg vandt. Juhu!";
     }
 }
