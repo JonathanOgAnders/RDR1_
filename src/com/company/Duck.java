@@ -12,18 +12,9 @@ public class Duck
         this.nr = nr;
     }
 
-    public int getNr()
-    {
-        return nr;
-    }
-
-    public void setNr(int nr)
-    {
-        this.nr = nr;
-    }
-
     public String toString()
     {
-        return "Jeg er and nr: " + nr + " og jeg vandt. Juhu!";
+//        return "Jeg er and nr: " + nr + " og jeg vandt. Juhu!";
+        return "and " + nr;
     }
 }
